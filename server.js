@@ -4,7 +4,7 @@ const http = require('http');
 const socketio = require('socket.io');
 
 const {formatMessage, cleanInput} = require('./utils/messages');
-const { getUserById, getUsersByRoom, addUserToRoom, userLeave} = require('./utils/users')
+const {getUserById, getUsersByRoom, addUserToRoom, userLeave} = require('./utils/users')
 
 const app = express();
 const server = http.createServer(app);
@@ -21,6 +21,8 @@ io.on('connection', socket => {
     
     //when client connects
     socket.on('joinRoom', ({ username, room }) => {
+        username = cleanInput(username);
+        room = cleanInput(room);
         const user = addUserToRoom(socket.id, username, room);
         socket.join(room);
         socket.emit('message', formatMessage(botName, `Welcome to the ${room} chat room, <b>${username}</b>!!`));
