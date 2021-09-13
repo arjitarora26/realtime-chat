@@ -3,7 +3,7 @@ const express = require('express');
 const http = require('http');
 const socketio = require('socket.io');
 
-const formatMessage = require('./utils/messages');
+const {formatMessage, cleanInput} = require('./utils/messages');
 const { getUserById, getUsersByRoom, addUserToRoom, userLeave} = require('./utils/users')
 
 const app = express();
@@ -40,7 +40,7 @@ io.on('connection', socket => {
             socket.emit('message', formatMessage(botName,"Something went wrong. Relogin"));
             return;
         };
-        io.to(user.room).emit('message', formatMessage(user.username, msg));
+        io.to(user.room).emit('message', formatMessage(user.username, cleanInput(msg)));
     });
 
     // when client disconnects

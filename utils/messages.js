@@ -8,4 +8,18 @@ function formatMessage(username, text) {
     }
 }
 
-module.exports = formatMessage;
+function cleanInput(msg) {
+    return msg.replace(/[&<>'"]/g, 
+    tag => ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        "'": '&#39;',
+        '"': '&quot;'
+      }[tag]));
+}
+
+module.exports = {
+    formatMessage,
+    cleanInput
+} 
