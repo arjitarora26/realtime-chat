@@ -4,8 +4,8 @@
   "description": "Real Time Chat Application",
   "main": "server.js",
   "scripts": {
-    "start" : "node server",
-    "dev" : "nodemon server"
+    "start": "node server",
+    "dev": "nodemon server"
   },
   "author": "a2",
   "license": "MIT",
@@ -16,5 +16,8 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.12"
+  },
+  "engines": {
+    "node": "10.19.0"
   }
 }
