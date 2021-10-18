@@ -36,12 +36,18 @@ chatForm.addEventListener('submit', (e) => {
     e.target.elements.msg.focus();
 });
 
+// Format timestamp by locale as "hh:mm am|pm"
+function formatTime(time) {
+    const date = new Date(time);
+
+    return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+}
 
 // Output message to DOM
 function outputMessage(message) {
     const div = document.createElement('div');
     div.classList.add('message');
-    div.innerHTML = `<p class="meta">${message.username} <span>${message.time}</span></p>
+    div.innerHTML = `<p class="meta">${message.username} <span>${formatTime(message.time)}</span></p>
     <p class="text">${message.text}</p></div>`;
     chatMessages.append(div);
 }
