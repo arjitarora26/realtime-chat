@@ -29,11 +29,24 @@
                         <option value="Python">Python</option>
                         <option value="Java">Java</option>
                         <option value="Javascript">Javascript</option>
+                        <option value="custom">Custom room...</option>
                     </select>
                 </div>
                 <button type="submit" class="btn">Join chat!</button>
             </form>
         </main>
     </div>
+
+    <script>
+        const roomSelect = document.querySelector('select#room')
+
+        roomSelect.addEventListener('change', e => {
+            if (e.target.value === 'custom') {
+                let newRoomName = prompt('What would you like to call your room?')
+                let newOption = new Option(newRoomName, newRoomName, false, true)
+                document.querySelector('#room').appendChild(newOption)
+            }
+        })
+    </script>
     </body>
 </html>
